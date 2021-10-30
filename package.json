@@ -1,0 +1,35 @@
+{
+  "name": "aws_lambda_rocket",
+  "version": "1.0.0",
+  "description": "An AWS Lambda function for storing Space X rockets data to DynamoDB",
+  "main": "index.js",
+  "scripts": {
+    "watch-ts": "webpack --config webpack.dev.js",
+    "watch-js": "nodemon ./dist/index.js",
+    "start": "concurrently \"npm run watch-ts\" \"npm run watch-js\"",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daliuxas200/aws-lambda-rocket.git"
+  },
+  "author": "Dalius Slavickas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Daliuxas200/aws-lambda-rocket/issues"
+  },
+  "homepage": "https://github.com/Daliuxas200/aws-lambda-rocket#readme",
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "concurrently": "^6.3.0",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.4",
+    "webpack": "^5.60.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1016.0",
+    "date-fns": "^2.25.0"
+  }
+}
