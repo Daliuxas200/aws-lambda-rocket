@@ -12,3 +12,5 @@ Custom webpack setup was created to manage development and production builds. Th
 `npm start` to start development webpack process to watch and continuously bundle our files
 
 `npm build` to generate a final minimised build
+
+3. **aws-sdk** was excluded from final build by specifying as as an external module in webpack config, because it is available by default in AWS Lambda.

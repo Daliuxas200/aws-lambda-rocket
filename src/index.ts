@@ -33,6 +33,7 @@ exports.handler = async (event: Rocket[]) => {
   });
 
   const docClient = new AWS.DynamoDB.DocumentClient({ region: "eu-central-1" });
+  const log = [];
 
   for (let rocket of event) {
     const timeStamp = new Date();
@@ -53,20 +54,26 @@ exports.handler = async (event: Rocket[]) => {
     };
 
     const params = {
-      TableName: "Rockets",
+      TableName: process.env.TABLE_NAME,
       Item: newRocket,
     };
 
     try {
       await docClient.put(params).promise();
-      console.log("PutItem succeeded:", rocket.id);
+      log.push("PutItem succeeded for rocket: ", rocket.id);
     } catch (err) {
-      console.error(
-        "Unable to add rocket ",
+      log.push(
+        "Unable to add rocket: ",
         rocket.id,
         ". Error JSON:",
         JSON.stringify(err, null, 2)
       );
     }
   }
+
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify(log),
+  };
+  return response;
 };
